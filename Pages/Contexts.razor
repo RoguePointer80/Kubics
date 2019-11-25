@@ -1,0 +1,16 @@
+﻿<select @bind="@Current">
+    @foreach (var context in Names)
+    {
+        @if (context == Current)
+        {
+            <option value="@context" selected>@context</option>
+        }
+        else
+        {
+            <option value="@context">@context</option>
+        }
+
+    }
+</select>
+Current is: @Current
+
