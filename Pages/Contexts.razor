@@ -1,4 +1,4 @@
-﻿<select @onchange="OnSelectionChanged">
+﻿<select @bind="@Current">
     @foreach (var context in Names)
     {
         @if (context == Current)

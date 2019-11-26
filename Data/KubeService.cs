@@ -8,8 +8,13 @@ namespace Kubics.Data
 {
     public class KubeService
     {
+        private Kubernetes m_k8s;
+
         public KubeService()
         {
+            // Temporary workaround : oidc auth-provider not supported
+            var clientConfig = new KubernetesClientConfiguration { Host = "http://127.0.0.1:8001" };
+            m_k8s = new Kubernetes(clientConfig);
         }
 
         public async Task<IList<string>> ListClustersAsync()
@@ -22,6 +27,12 @@ namespace Kubics.Data
             }
 
             return clusters;
+        }
+
+        public async Task<IList<string>> ListNamespaceAsync()
+        {
+            var v1ns = await m_k8s.ListNamespaceAsync();
+            return v1ns.Items.Select(x => x.Metadata.Name).ToList();
         }
     }
 }

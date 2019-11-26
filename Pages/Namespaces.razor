@@ -1,0 +1,11 @@
+﻿@page "/namespaces/{Context}"
+
+<h3>Namespaces in context @Context</h3>
+<ul>
+    @foreach (string ns in NamespaceList)
+    {
+        <li>
+            @ns
+        </li>
+    }
+</ul>

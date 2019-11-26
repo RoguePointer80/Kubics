@@ -31,9 +31,5 @@ namespace Kubics.Pages
             Names = names.ToArray();
         }
 
-        protected void OnSelectionChanged(ChangeEventArgs e)
-        {
-            Current = e.Value.ToString();
-        }
     }
 }

@@ -13,8 +13,8 @@
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
+            <NavLink class="nav-link" href=@NamespaceUrl>
+                <span class="oi oi-plus" aria-hidden="true"></span> Namespaces
             </NavLink>
         </li>
         <li class="nav-item px-3">
@@ -23,14 +23,19 @@
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+            <NavLink class="nav-link" href="nodes">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Nodes
             </NavLink>
         </li>
     </ul>
+    <Kubics.Pages.Contexts @ref="ContextList" />
 </div>
 
 @code {
+    private Kubics.Pages.Contexts ContextList;
+
+    private string NamespaceUrl { get => $"namespaces/{ContextList?.Current ?? "default"}"; }
+
     private bool collapseNavMenu = true;
 
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
