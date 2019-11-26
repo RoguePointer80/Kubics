@@ -1,0 +1,11 @@
+﻿@page "/pods/{K8sNamespace}"
+
+<h3>Pods in @K8sNamespace</h3>
+<ul>
+    @foreach (string podname in PodNames)
+    {
+        <li>
+            @podname
+        </li>
+    }
+</ul>

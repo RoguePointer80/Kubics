@@ -9,9 +9,13 @@ namespace Kubics.Pages
 {
     public partial class Contexts : ComponentBase
     {
+        private Dictionary<string, k8s.KubeConfigModels.Context> m_contexts = new Dictionary<string, k8s.KubeConfigModels.Context>();
+
         public string[] Names { get; set; }
 
         public string Current { get; set; }
+
+        public string CurrentNamespace { get => m_contexts[Current]?.ContextDetails.Namespace ?? "default"; }
 
         public Contexts()
         {
@@ -25,6 +29,7 @@ namespace Kubics.Pages
             List<string> names = new List<string>();
             foreach (var context in conf.Contexts)
             {
+                m_contexts.Add(context.Name, context);
                 names.Add(context.Name);
             }
             Current = conf.CurrentContext;

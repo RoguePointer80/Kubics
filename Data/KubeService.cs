@@ -34,5 +34,11 @@ namespace Kubics.Data
             var v1ns = await m_k8s.ListNamespaceAsync();
             return v1ns.Items.Select(x => x.Metadata.Name).ToList();
         }
+
+        public async Task<IList<k8s.Models.V1Pod>> ListPodsAsync(string ns)
+        {
+            var pods = await m_k8s.ListNamespacedPodAsync(ns);
+            return pods.Items;
+        }
     }
 }
